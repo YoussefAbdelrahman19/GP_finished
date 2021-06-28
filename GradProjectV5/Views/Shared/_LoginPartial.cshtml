@@ -1,0 +1,36 @@
+﻿<style>
+    .navbar-nav {
+        padding-left: 20%;
+    }
+</style>
+@using System.Text.RegularExpressions
+@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-nav" }))
+    {
+        @Html.AntiForgeryToken()
+
+            <li class="nav-item">
+                @{
+        var input = User.Identity.GetUserName();
+        string[] userName = Regex.Split(input, @"[0-9]");
+                }
+                @Html.ActionLink("مرحبا " + userName[0], "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @class = "nav-link fw-bold text-light text-nowrap" })
+            </li>
+            <li class="nav-item"><a class="nav-link fw-bold text-light text-nowrap" href="javascript:document.getElementById('logoutForm').submit()">تسجيل الخروج</a></li>
+    }
+}
+else
+{
+    <ul class="navbar-nav " id="loginAndRegister">
+        <li class="nav-item">
+            <a class="nav-link fw-bold text-light text-nowrap" href="/Account/Login" id="loginLink">تسجيل الدخول</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link fw-bold text-light text-nowrap" href="/Account/Register" id="loginLink"> الإشتراك</a>
+        </li>
+
+    </ul>
+
+}

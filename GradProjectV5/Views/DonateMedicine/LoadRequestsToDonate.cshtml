@@ -1,0 +1,127 @@
+﻿
+@{
+    ViewBag.Title = "LoadRequestsToDonate";
+}
+
+<div id="MedicineRequestDiv"></div>
+
+
+<div class="modal fade" id="AnswerQuestionModel" tabindex="-1" aria-labelledby="OpenDonateMedicineModalModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-body">
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <label class="control-label py-2">الكمية المتاحة</label>
+                    </div>
+                    <div class="col-md-12">
+                        <input type="number" id="txt_availableamount" class="form-control p-2"/>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+
+                    <button type="button" onclick="DonateMedicine();" class="btn btn-primary ">حفظ</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إغلاق</button>
+      
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+
+        $(document).ready(function() {
+            LoadRequestToAnswer();
+        });
+
+
+        function LoadRequestToAnswer() {
+            var url = "@Url.Action("LoadRequestsDataToDonate", "DonateMedicine")";
+
+            $("#MedicineRequestDiv").html('');
+            var tr = '';
+            var result = CreateAjaxRequest(url, "post", {});
+
+            if (result != null) {
+                if (result.length > 0) {
+
+
+                    tr += '<table class="table table-striped table-bordered table-hover dataTables-example">';
+                    tr += '<thead>';
+                    tr += '   <tr>';
+                    tr += '       <th>مقدم الطلب</th>';
+                    tr += '       <th>تاريخ تقديم الطلب</th>';
+                    tr += '       <th> الدواء الناقص </th>';
+                    tr += '       <th> الكمية المطلوبة</th>';
+                    tr += '       <th> حالة الطلب</th>';
+                    tr += '       <th>تبرع الأن</th>';
+
+                    tr += '</tr>';
+                    tr += '</thead>';
+                    tr += '<tbody>';
+
+
+                    for (var i = 0; i < result.length; i++) {
+                        tr += '<tr>';
+                        tr += '<td>' + result[i].BenificierFullName + '</td>';
+                        tr += '<td>' + result[i].Rday + "/" + result[i].Rmonth + "/" + result[i].Ryear + "</td>";
+                        
+                        tr += '<td>' + result[i].MedicineName + '</td>';
+                        tr += '<td>' + result[i].RequestedAmount + '</td>';
+                        tr += '<td>' + result[i].StatusName + "</td>";
+                        tr += '<td><button type="button"onclick="OpenDonateMedicineModal(' + result[i].ID + ');" class="btn btn-primary ">تبرع</button></td>';
+                        tr += '</tr>';
+                    }
+
+                    tr += '</tbody>';
+                    tr += '  </table>';
+                    $("#GetAllMembersDiv").append(tr);
+                    $('.dataTables-example').DataTable({
+                        "ordering": false
+                    });
+                }
+            }
+            $("#MedicineRequestDiv").append(tr);
+        }
+
+
+
+        function OpenDonateMedicineModal(id) {
+
+            global_rquest_id = id;
+            $('#AnswerQuestionModel').modal('show');
+
+        }
+
+
+        function DonateMedicine() {
+
+            var availableamount = $("#txt_availableamount").val();
+            if (availableamount == "") {
+                alert("من فضلك أدخل كمية للتبرع");
+            } else {
+                var url = "@Url.Action("DonateMedicine","DonateMedicine")";
+                var result = CreateAjaxRequest(url,
+                    "post",
+                    {
+                        amount: availableamount,
+                        requestid: global_rquest_id
+                    });
+                alert(result);
+                LoadRequestToAnswer();
+            }
+
+
+        }
+    </script>
+}
+
+

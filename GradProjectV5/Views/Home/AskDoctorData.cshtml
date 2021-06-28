@@ -1,0 +1,157 @@
+﻿@model GradProjectV5.ViewModels.ComplainMember
+
+@{
+    ViewBag.Title = "إسأل طبيب مجانا";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="pt-5"></div>
+
+<div class="container-xl mt-5 p-5 mb-5 " id="AskDoctor">
+    <h4 class="text-center pb-2 ">
+        اطرح سؤالك الآن ليصل إلى آلاف الأطباء
+    </h4>
+    <p class="text-center lead pb-3">يتم الإجابة على الاستفسارات خلال 48 ساعة، لذلك في الحالات الطبية الطارئة ننصحك بالتوجه إلى أقرب مركز طوارئ في منطقتك</p>
+
+    @using (Html.BeginForm("SaveComplaint", "Home", FormMethod.Post))
+    {
+        @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+       
+        
+        @* ############# *@
+        <div class="form-group ">
+            @Html.LabelFor(c => c.Member.FullName, htmlAttributes: new { @class = "control-label col-md-2 p-2" })
+            <div class="col-sm-10">
+                @Html.EditorFor(c => c.Member.FullName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(c => c.Member.FullName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        @* ############# *@
+        @* ############# *@
+        <div class="form-group ">
+            @Html.LabelFor(c => c.Member.Age, htmlAttributes: new { @class = "control-label col-md-2 p-2" })
+            <div class="col-sm-10">
+                @Html.EditorFor(c => c.Member.Age, new { htmlAttributes = new { @class = "form-control"} })
+                @Html.ValidationMessageFor(c => c.Member.Age, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        @* ############# *@
+        
+        @* ############# *@
+
+    @* ############# *@
+    <div class="form-group ">
+        @Html.LabelFor(c => c.Complaint.ComplaintDescription, htmlAttributes: new { @class = "control-label col-md-2 p-2" })
+        <div class="col-sm-10">
+            @Html.EditorFor(c => c.Complaint.ComplaintDescription, new { htmlAttributes = new { @class = "form-control", placeholder = "السؤال (شرح كافة الأعراض المتعلقة بالمشكلة الصحية) " } })
+            @Html.ValidationMessageFor(c => c.Complaint.ComplaintDescription, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    @* ############# *@
+        @* ############# *@
+        <div class="form-group mt-3">
+            <div class="col-sm-2">
+                <label class="control-label p-2">
+                    إرفاق ملف
+                </label>
+            </div>
+            <div class="col-sm-10 mt-2">
+                <div class="dropzone  dropzone-previews class1" id="myawesomedropzone"></div>
+
+            </div>
+
+        </div>
+    <div class="form-group mt-3">
+        @Html.LabelFor(c => c.Complaint.ComplainDate, htmlAttributes: new { @class = "control-label col-md-2 p-2" })
+        <div class="col-sm-10 ">
+            @Html.EditorFor(c => c.Complaint.ComplainDate, new { htmlAttributes = new { @class = "form-control", placeholder = "السؤال (شرح كافة الأعراض المتعلقة بالمشكلة الصحية) " } })
+            @Html.ValidationMessageFor(c => c.Complaint.ComplainDate, "", new { @class = "text-danger" })
+        </div>
+    </div>
+        
+        
+
+  
+   
+  
+
+
+
+
+    <button class="btn btn-primary btn-lg mt-4" type="submit" >أرسل الآن</button>
+   
+
+
+    }
+
+</div>
+
+@section scripts{
+    <script>
+
+
+        $(document).ready(function () {
+            window.Dropzone.options.myawesomedropzone = {
+                url: '../Upload.ashx',
+                addRemoveLinks: true,
+                
+
+                removedfile: function (file) {
+                    RemoveThisFileName(file.name);
+
+
+                    file.previewElement.remove();
+
+
+                    },
+
+                    success: function (file, response) {
+                        var url = "@Url.Action("addFiles", "Home")";
+                        CreateAjaxRequest(url,"post", { file_name: file.name, respons: response });
+                    file.previewElement.classList.add("dz-success");
+                },
+                previewsContainer: ".class1",
+                uploadMultiple: false,
+                parallelUploads: 100,
+                maxFiles: 1,
+                init: function () {
+                    var myAwesomeDropzone = this;
+                    $("#btnSaveds").click(function () {
+                        myAwesomeDropzone.removeAllFiles(true);
+                    });
+                }
+            }
+
+
+        });
+        
+
+
+
+
+
+
+        function RemoveThisFileName(name) {
+          var url = "@Url.Action("Remove_This_FileName", "Home")";
+
+            var result = CreateAjaxRequest(url,"post", { filename: name });
+        }
+
+        function CreateAjaxRequest(url, requesttype, form_data) {
+            var resultData = null;
+            $.ajax({
+                url: url,
+                type: requesttype,
+                async: false,
+                datatype: 'JSON',
+                contentType: "application/json",
+                data: JSON.stringify(form_data),
+                success: function (result) { resultData = result }
+            });
+            return resultData;
+        }
+
+
+    </script>
+
+}

@@ -1,0 +1,186 @@
+﻿@model GradProjectV5.Models.BeneficierMedicineRequest
+
+@{
+    ViewBag.Title = "RequestMedicine";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+    <div class="form-group">
+        <div class="col-sm-2">
+            <label class="control-label py-2">اسم الدواء </label>
+
+        </div>
+        <div class="col-sm-10">
+            <select id="MedicineId" name="MedicineId" class="form-control p-2"></select>
+        </div>
+        <div class="col-sm-1">
+            @*<a href="@Url.Action("Create","Medicine" )"><i class="fa fa-plus" style="color:blue;font-weight:bold"></i></a>*@
+
+        </div>
+    </div>
+
+
+
+    <div class="form-group">
+        <div class="col-sm-2">
+            @Html.LabelFor(model => model.RequestedAmount, htmlAttributes: new { @class = "control-label py-2 " })
+        </div>
+        <div class="col-sm-10">
+            @Html.EditorFor(model => model.RequestedAmount, new { htmlAttributes = new { @class = "form-control p-2" } })
+            @Html.ValidationMessageFor(model => model.RequestedAmount, "", new { @class = "text-danger" })
+        </div>
+        <div class="col-sm-1"></div>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+    <div class="form-group pt-4 w-100 text-center py-4 ">
+        <div class="col-sm-10 ">
+            <input type="submit" value="حفظ" class="btn btn-primary w-100 py-2" />
+
+        </div>
+    </div>
+
+
+    <br />
+    <br />
+    <div id="PharmacyRequestMedicineDiv"></div>
+
+}
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+
+        $(document).ready(function() {
+            LoadMyPharmacies();
+            LoadMedicine();
+            LoadPhMedicineRequest();
+        });
+
+
+        function LoadMyPharmacies() {
+            $('#RequestPharamcyId option').each(function() {
+                $(this).remove();
+            });
+            var url = "@Url.Action("GetMyPharmacies", "Pharmacy")";
+            var result = CreateAjaxRequest(url, "post", {});
+            for (var i in result) {
+                $("#RequestPharamcyId")
+                    .append('<option value=' + result[i].ID + '>' + result[i].PharmacyName + '</option>');
+            }
+
+
+        }
+
+        function LoadMedicine() {
+            $('#MedicineId option').each(function() {
+                $(this).remove();
+            });
+            var url = "@Url.Action("Index", "Medicine")";
+            var result = CreateAjaxRequest(url, "get", {});
+            for (var i in result) {
+                $("#MedicineId").append('<option value=' + result[i].ID + '>' + result[i].MedicineName + '</option>');
+            }
+
+
+        }
+
+        function LoadPhMedicineRequest() {
+            var url = "@Url.Action("GetPhRequestedMedicine", "Pharmacy")";
+
+            $("#PharmacyRequestMedicineDiv").html('');
+            var tr = '';
+            var result = CreateAjaxRequest(url, "get", {});
+
+            if (result != null) {
+                if (result.length > 0) {
+
+
+                    tr += '<table class="table table-striped table-bordered table-hover dataTables-example">';
+                    tr += '<thead>';
+                    tr += '   <tr>';
+                    tr += '       <th>إسم الصيدلية</th>';
+                    tr += '       <th> الدواء المطلوب</th>';
+                    tr += '       <th> الكمية</th>';
+                    tr += '       <th>تاريخ الطلب</th>';
+                    tr += '       <th>حالة الطلب</th>';
+                    tr += '       <th>الجهة التي ردت علي الطلب</th>';
+                    tr += '       <th>تاريخ الرد</th>';
+                    tr += '       <th>إنهاء الطلب</th>';
+
+                    tr += '    </tr>';
+                    tr += '</tr></thead>';
+                    tr += '<tbody>';
+
+
+                    for (var i = 0; i < result.length; i++) {
+                        tr += '<tr>';
+                        tr += '<td>' + result[i].RequestPharmacy + '</td>';
+                        tr += '<td>' + result[i].MedicineName + '</td>';
+                        tr += '<td>' + result[i].RequestedAmount + '</td>';
+                        tr += '<td>' + result[i].requestday + "/" + result[i].requestmonth+ "/" + result[i].requestyear + '</td>';
+                        tr += '<td>' + result[i].StatusName + '</td>';
+                        tr += '<td>' + result[i].RespondPharmacy + '</td>';
+                        if (result[i].respondyear == 0) {
+                            tr += '<td></td>';
+                        } else {
+                            tr += '<td>' + result[i].respondday + "/" + result[i].respondmonth + "/" + result[i].respondyear + '</td>';
+
+                        }
+
+                        tr += '<td><button type="button"onclick="CloseMedicineRequest(' + result[i].ID+');" class="btn btn-primary ">إغلاق</button></td>';
+
+                        tr += '</tr>';
+                    }
+
+                    tr += '</tbody>';
+                    tr += '  </table>';
+                  
+                    $("#GetAllMembersDiv").append(tr);
+                    $('.dataTables-example').DataTable({
+                        "ordering": false
+                    });
+                }
+            }
+            $("#PharmacyRequestMedicineDiv").append(tr);
+        }
+
+
+        function CloseMedicineRequest(id) {
+            var x = confirm("هل انت متأكد من تنفيذ هذا الإجراء");
+            if (x == true) {
+                var url = "@Url.Action("CloseMedicineRequest","Pharmacy")";
+                var result = CreateAjaxRequest(url,
+                    "post",
+                    {
+                        requestid: id
+                    });
+                alert(result);
+                LoadPhMedicineRequest();
+            }
+        }
+    </script>
+}

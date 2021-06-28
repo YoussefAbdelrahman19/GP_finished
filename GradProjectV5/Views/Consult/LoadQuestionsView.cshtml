@@ -1,0 +1,140 @@
+﻿
+@{
+    ViewBag.Title = "LoadQuestionsView";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="ConsultQuestionsDiv"></div>
+
+
+<div class="modal fade" id="AnswerQuestionModel" tabindex="-1" aria-labelledby="OpenAnswerQuestionModelModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-body">
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <label class="control-label py-2">الرد</label>
+                    </div>
+                    <div class="col-md-12">
+                        <textarea id="txt_answer" class="form-control p-2"></textarea>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+
+                    <button type="button" onclick="SaveQuestionAnswer();" class="btn btn-primary ">حفظ</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إغلاق</button>
+      
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+
+        $(document).ready(function() {
+            LoadQuestionsToAnswer();
+        });
+
+
+        function LoadQuestionsToAnswer() {
+            var url = "@Url.Action("LoadQuestionsForAnswer", "Consult")";
+
+            $("#ConsultQuestionsDiv").html('');
+            var tr = '';
+            var result = CreateAjaxRequest(url, "get", {});
+
+            if (result != null) {
+                if (result.length > 0) {
+
+
+                    tr += '<table class="table table-striped table-bordered table-hover dataTables-example">';
+                    tr += '<thead>';
+                    tr += '   <tr>';
+                    tr += '       <th>مقدم السؤال</th>';
+                    tr += '       <th>تاريخ تقديم السؤال</th>';
+                    tr += '       <th> الجنس</th>';
+                    tr += '       <th> السن</th>';
+                    tr += '       <th> نوع السؤال</th>';
+                    tr += '       <th>عنوان السؤال</th>';
+                    tr += '       <th>السؤال</th>';
+                    tr += '       <th>الصورة المتاحة</th>';
+                    tr += '       <th>إضافة رد</th>';
+
+                    tr += '</tr>';
+                    tr += '</thead>';
+                    tr += '<tbody>';
+
+
+                    for (var i = 0; i < result.length; i++) {
+                        tr += '<tr>';
+                        tr += '<td>' + result[i].QuestionerName + '</td>';
+                        if (result[i].Qyear == 0) {
+                            tr += '<td></td>';
+                        } else {
+                            tr += '<td>' + result[i].Qday + "/" + result[i].Qmonth + "/" + result[i].Qyear + "</td>";
+                        }
+                        tr += '<td>' + result[i].GenderName + '</td>';
+                        tr += '<td>' + result[i].Age + '</td>';
+                        tr += '<td>' + result[i].ConsultTypeName + "</td>";
+                        tr += '<td>' + result[i].ConsultQuestionTitle + '</td>';
+                        tr += '<td>' + result[i].ConsultQuestionName + '</td>';
+                        if (result[i].AvailableFilePath == "") {
+                            tr += '<td></td>';
+                        } else {
+                            tr += '<td><a target="_blank" href="../uploads/' + result[i].AvailableFilePath + '">Preview</a></td>';
+                        }
+
+                        tr += '<td><button type="button"onclick="OpenAnswerQuestionModel(' + result[i].ID + ');" class="btn btn-primary ">رد</button></td>';
+                        tr += '</tr>';
+                    }
+
+                    tr += '</tbody>';
+                    tr += '  </table>';
+                    $("#GetAllMembersDiv").append(tr);
+                    $('.dataTables-example').DataTable({
+                        "ordering": false
+                    });
+                }
+            }
+            $("#ConsultQuestionsDiv").append(tr);
+        }
+
+
+
+        function OpenAnswerQuestionModel(id) {
+
+            global_consult_id = id;
+            $('#AnswerQuestionModel').modal('show');
+
+        }
+
+
+        function SaveQuestionAnswer() {
+            var answer = $("#txt_answer").val();
+            if (answer == "") {
+                alert("من فضلك أدخل إجابة");
+            } else {
+                var url = "@Url.Action("SaveConsultAnswer","Consult")";
+                var result = CreateAjaxRequest(url,
+                    "post",
+                    {
+                        consultid: global_consult_id,
+                        answer: answer
+                    });
+                alert(result);
+                $("#txt_answer").val(null);
+                LoadQuestionsToAnswer();
+
+            }
+        }
+    </script>
+}
+

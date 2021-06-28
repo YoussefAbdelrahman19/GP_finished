@@ -1,0 +1,53 @@
+﻿@model GradProjectV5.Models.Medicine
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+      
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group py-2">
+            @Html.LabelFor(model => model.MedicineName, htmlAttributes: new { @class = "control-label col-sm-10 py-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.MedicineName, new { htmlAttributes = new { @class = "form-control col-sm-10" } })
+                @Html.ValidationMessageFor(model => model.MedicineName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+      
+
+        <div class="form-group py-2">
+            @Html.LabelFor(model => model.MedicineDescription, htmlAttributes: new { @class = "control-label col-sm-10 py-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.MedicineDescription, new { htmlAttributes = new { @class = "form-control col-sm-10" } })
+                @Html.ValidationMessageFor(model => model.MedicineDescription, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group py-2">
+            @Html.LabelFor(model => model.ExpireDate, htmlAttributes: new { @class = "control-label col-sm-10 py-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ExpireDate, new { htmlAttributes = new { @class = "form-control col-sm-10" } })
+                @Html.ValidationMessageFor(model => model.ExpireDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="col-sm-10 py-3">
+            <input type="submit" value="حفظ" class="btn btn-primary w-100 py-2" />
+        </div>
+    </div>
+}
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

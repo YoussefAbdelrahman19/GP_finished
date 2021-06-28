@@ -1,0 +1,64 @@
+﻿@model GradProjectV5.Models.Pharamacy
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container bg-white">
+    <div class="row  ">
+        <p class="lead fs-2 text-center p-5 " style="font-weight:400">
+            أضف صيدليتك و انضم لطبيب الخير
+        </p>
+
+    </div>
+</div>
+<div>
+    <p class="fs-4 lead text-center text-info p-4" style="font-weight: 500">بيانات الصيدلية</p>
+
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.PharmacyName, htmlAttributes: new { @class = "py-3 text-info lead fs-5", style = "font-weight: 400" })
+                <div class="col-sm-10 ">
+                    @Html.EditorFor(model => model.PharmacyName, new { htmlAttributes = new { @class = "form-control p-2" } })
+                    @Html.ValidationMessageFor(model => model.PharmacyName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.PharmacyAddress, htmlAttributes: new { @class = "py-3 text-info lead fs-5", style = "font-weight: 400" })
+                <div class="col-sm-10">
+                    @Html.EditorFor(model => model.PharmacyAddress, new { htmlAttributes = new { @class = "form-control p-2" } })
+                    @Html.ValidationMessageFor(model => model.PharmacyAddress, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.PharmacyPhone, new { @class = "py-3 text-info lead fs-5", style = "font-weight: 400" })
+                <div class="col-sm-10">
+                    @Html.EditorFor(model => model.PharmacyPhone, new { htmlAttributes = new { @class = "form-control p-2" } })
+                    @Html.ValidationMessageFor(model => model.PharmacyPhone, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group pt-4 w-100 text-center py-4 ">
+                <div class="col-sm-10 ">
+                    <input type="submit" value="حفظ" class="btn btn-primary w-100 py-2" />
+
+                </div>
+            </div>
+        </div>
+
+    }
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

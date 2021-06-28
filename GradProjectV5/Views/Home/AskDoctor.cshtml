@@ -1,0 +1,19 @@
+﻿@model GradProjectV5.Models.Complaint
+
+@{
+    ViewBag.Title = "AskDoctor";
+}
+
+<h5 style="margin-top:85px;color:#18a8aa" class="text-center  fw-lighter fs-1 ">اسأل طبيب مجانا </h5>
+<div class="container-fluid mt-5 ">
+    <div class="row">
+        <h5 class="col-sm mb-md-4 m-lg-0  ">أسئلة وإجابات مجانية</h5>
+        <div class="col-lg-4"></div>
+        <div class="col-sm container-fluid">
+            <div class="row">
+                <div class="col">@Html.ActionLink("إسأل طبيب مجاناً", "AskDoctorData", "", new { @class = "btn  btn-large p-2 fs-6 ", @style = "background-color:#18a8aa;color:white;" })</div>
+                <div class="col">@Html.ActionLink("عرض كافة الأسئلة", "", "", new { @class = "btn  btn-large  p-2 fs-6 ", @style = "background-color:#e7f6f6;color:#117374;" })</div>
+            </div>
+        </div>
+    </div>
+</div>

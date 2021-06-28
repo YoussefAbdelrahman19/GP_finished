@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a06c1fb4abe4474a9f78424fc620d47d" Name="Diagram1">
+        <EntityTypeShape EntityType="MyProjectDBModel.C__MigrationHistory" Width="1.5" PointX="0.5" PointY="1.625" />
+        <EntityTypeShape EntityType="MyProjectDBModel.AspNetRole" Width="1.5" PointX="0.5" PointY="12.375" />
+        <EntityTypeShape EntityType="MyProjectDBModel.AspNetUserClaim" Width="1.5" PointX="5" PointY="20.375" />
+        <EntityTypeShape EntityType="MyProjectDBModel.AspNetUserLogin" Width="1.5" PointX="4.5" PointY="17.875" />
+        <EntityTypeShape EntityType="MyProjectDBModel.AspNetUser" Width="1.5" PointX="2.375" PointY="13" />
+        <EntityTypeShape EntityType="MyProjectDBModel.BeneficierMedicineRequest" Width="1.5" PointX="8.125" PointY="9.375" />
+        <EntityTypeShape EntityType="MyProjectDBModel.BMedicineRequestStatu" Width="1.5" PointX="7.25" PointY="23.375" />
+        <EntityTypeShape EntityType="MyProjectDBModel.City" Width="1.5" PointX="2.75" PointY="9.75" />
+        <EntityTypeShape EntityType="MyProjectDBModel.Complaint" Width="1.5" PointX="9.5" PointY="19.75" />
+        <EntityTypeShape EntityType="MyProjectDBModel.ComplaintStatu" Width="1.5" PointX="11.75" PointY="20.125" />
+        <EntityTypeShape EntityType="MyProjectDBModel.Consult" Width="1.5" PointX="11.75" PointY="10" />
+        <EntityTypeShape EntityType="MyProjectDBModel.ConsultAnswer" Width="1.5" PointX="12.375" PointY="6.125" />
+        <EntityTypeShape EntityType="MyProjectDBModel.ConsultType" Width="1.5" PointX="8.875" PointY="6" />
+        <EntityTypeShape EntityType="MyProjectDBModel.Doctor" Width="1.5" PointX="7.25" PointY="20.125" />
+        <EntityTypeShape EntityType="MyProjectDBModel.Gender" Width="1.5" PointX="2.75" PointY="6.5" />
+        <EntityTypeShape EntityType="MyProjectDBModel.Governarte" Width="1.5" PointX="0.5" PointY="9.875" />
+        <EntityTypeShape EntityType="MyProjectDBModel.Medicine" Width="1.5" PointX="5" PointY="5" />
+        <EntityTypeShape EntityType="MyProjectDBModel.Member" Width="1.5" PointX="5.75" PointY="8.75" />
+        <EntityTypeShape EntityType="MyProjectDBModel.Pharamacy" Width="1.5" PointX="8.125" PointY="15.625" />
+        <EntityTypeShape EntityType="MyProjectDBModel.PharmacyMedicineRequest" Width="1.5" PointX="11" PointY="15.125" />
+        <EntityTypeShape EntityType="MyProjectDBModel.PhMedicineRequestStatu" Width="1.5" PointX="13.875" PointY="13.625" />
+        <EntityTypeShape EntityType="MyProjectDBModel.Status" Width="1.5" PointX="4.125" PointY="13.75" />
+        <AssociationConnector Association="MyProjectDBModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="MyProjectDBModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="MyProjectDBModel.FK_Member_AspNetUsers" />
+        <AssociationConnector Association="MyProjectDBModel.FK_BeneficierMedicineRequest_BeneficierMedicineRequest" />
+        <AssociationConnector Association="MyProjectDBModel.FK_BeneficierMedicineRequest_BeneficierMedicineRequest1" />
+        <AssociationConnector Association="MyProjectDBModel.FK_BeneficierMedicineRequest_Donator" />
+        <AssociationConnector Association="MyProjectDBModel.FK_BeneficierMedicineRequest_Member" />
+        <AssociationConnector Association="MyProjectDBModel.FK_BeneficierMedicineRequest_Status" />
+        <AssociationConnector Association="MyProjectDBModel.FK_BMedicineRequestStatus_Status" />
+        <AssociationConnector Association="MyProjectDBModel.FK_City_Governarte" />
+        <AssociationConnector Association="MyProjectDBModel.FK_Member_City" />
+        <AssociationConnector Association="MyProjectDBModel.FK_Complaint_Doctor" />
+        <AssociationConnector Association="MyProjectDBModel.FK_ComplaintStatus_ComplaintStatus" />
+        <AssociationConnector Association="MyProjectDBModel.FK_ComplaintStatus_Status" />
+        <AssociationConnector Association="MyProjectDBModel.FK_Consult_Consult" />
+        <AssociationConnector Association="MyProjectDBModel.FK_Consult_ConsultType" />
+        <AssociationConnector Association="MyProjectDBModel.FK_ConsultAnswer_Consult" />
+        <AssociationConnector Association="MyProjectDBModel.FK_ConsultAnswer_Member" />
+        <AssociationConnector Association="MyProjectDBModel.FK_Doctor_Member" />
+        <AssociationConnector Association="MyProjectDBModel.FK_Member_Gender" />
+        <AssociationConnector Association="MyProjectDBModel.FK_RequestMedicine_Medicine" />
+        <AssociationConnector Association="MyProjectDBModel.FK_Pharamacy_Member" />
+        <AssociationConnector Association="MyProjectDBModel.FK_RequestMedicine_Pharamacy" />
+        <AssociationConnector Association="MyProjectDBModel.FK_RequestMedicine_Pharamacy1" />
+        <AssociationConnector Association="MyProjectDBModel.FK_PharmacyMedicineRequest_Status" />
+        <AssociationConnector Association="MyProjectDBModel.FK_PhMedicineRequestStatus_PhMedicineRequestStatus" />
+        <AssociationConnector Association="MyProjectDBModel.FK_PhMedicineRequestStatus_Status" />
+        <AssociationConnector Association="MyProjectDBModel.AspNetUserRoles" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

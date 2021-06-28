@@ -1,0 +1,149 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>طبيب الخير</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/all.min.css" rel="stylesheet" />
+    <style>
+      /*  .navbar div.collapse ul li.dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        .navbar div li ul#ddl_phar {
+            display: none;
+            position: absolute;
+            z-index: 1;
+        }
+        .navbar div.collapse ul li.dropdown:hover + ul  {
+            display: block !important;
+            color: white !important;
+        }*/
+       .navbar div li ul#ddl_phar {
+            display: none;
+
+        }
+        .navbar div.collapse ul li.dropdown:hover ul {
+            display: block !important;
+            color: white !important;
+        }
+    </style>
+    @*<script>
+        $(".navbar div li ul#ddl_phar").hide();
+        $("button").mouseover(function(){
+            $("p").hide();
+        });
+    </script>*@
+   
+
+</head>
+<body class="bg-white">
+    <nav class="navbar navbar-expand-lg fixed-top navbar-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"><img src="~/Content/Images/SiteLogo.svg"/></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link fw-bold text-light" aria-current="page" href="/Home/Index">الرئيسية</a>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">إستشارة طبيب</a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown" id="ddl_phar">
+                            <li><a class="dropdown-item" href="@Url.Action("Create","Consult")">إضافة سؤال</a></li>
+                            <li><a class="dropdown-item" href="@Url.Action("LoadQuestionsView","Consult")">الرد علي سؤال</a></li>
+                            <li><a class="dropdown-item" href="@Url.Action("Index","Consult")">أسئلة وإجابات مجانية</a></li>
+
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">أشخاص</a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown" id="ddl_phar">
+                            <li><a class="dropdown-item" href="@Url.Action("Create","DonateMedicine")">طلب دواء</a></li>
+                            <li><a class="dropdown-item" href="@Url.Action("LoadRequestsToDonate","DonateMedicine")">تبرع بدواء</a></li>
+                            <li><a class="dropdown-item" href="@Url.Action("Index","DonateMedicine")">الطلبات السابقة</a></li>
+
+                        </ul>
+                    </li>
+
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">صيدليات</a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown" id="ddl_phar">
+                            <li><a class="dropdown-item" href="@Url.Action("Create","Pharmacy")">إضافة صيدلية</a></li>
+                            <li><a class="dropdown-item" href="@Url.Action("AllPhMedicineRequests","Pharmacy")">التبرع بدواء</a></li>
+                            <li><a class="dropdown-item" href="@Url.Action("RequestMedicine","Pharmacy")">طلب دواء</a></li>
+
+                        </ul>
+                    </li>
+
+
+                </ul>
+                    
+                <div class="loginAndRegister">@Html.Partial("_LoginPartial")</div> 
+
+                 
+            </div>
+        </div>
+    </nav>
+
+
+
+   
+<div class="container body">
+    
+    @RenderBody()
+
+    <footer class="mt-5 bg-white p-3 " style="border-top: 1px solid #18a8aa">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col">
+                    <p style="color: #1e6f5c" class="fw-light fs-5">جميع المعلومات الطبّية الواردة في موقع الطبي تهدف لزيادة التوعية الصحّية، ولا تغني عن استشارة الطبيب المختصّ</p>
+                </div>
+                <div class="col">
+                    <div class="clearfix">
+                        <div class="float-start">
+
+
+                            <a class="btn btn-primary m-md-2" style="background-color: #3b5998;" href="#!" role="button">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+
+                            <!-- Twitter -->
+                            <a class="btn btn-primary m-md-2" style="background-color: #55acee;" href="#!" role="button">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+
+                            <!-- Google -->
+                            <a class="btn btn-primary m-md-2" style="background-color: #dd4b39;" href="#!" role="button">
+                                <i class="fab fa-google"></i>
+                            </a>
+
+
+
+                            <!-- Linkedin -->
+                            <a class="btn btn-primary m-md-3" style="background-color: #0082ca;" href="#!" role="button">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    @RenderSection("scripts", required: false)
+<script src="~/Scripts/all.min.js"></script>
+
+</body>
+</html>
+

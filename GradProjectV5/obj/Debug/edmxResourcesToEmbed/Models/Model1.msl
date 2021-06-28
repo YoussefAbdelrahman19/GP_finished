@@ -1,0 +1,267 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MyProjectDBModelStoreContainer" CdmEntityContainer="MyProjectDBEntities">
+    <EntitySetMapping Name="C__MigrationHistory">
+      <EntityTypeMapping TypeName="MyProjectDBModel.C__MigrationHistory">
+        <MappingFragment StoreEntitySet="__MigrationHistory">
+          <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+          <ScalarProperty Name="Model" ColumnName="Model" />
+          <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+          <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetRoles">
+      <EntityTypeMapping TypeName="MyProjectDBModel.AspNetRole">
+        <MappingFragment StoreEntitySet="AspNetRoles">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUserClaims">
+      <EntityTypeMapping TypeName="MyProjectDBModel.AspNetUserClaim">
+        <MappingFragment StoreEntitySet="AspNetUserClaims">
+          <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+          <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUserLogins">
+      <EntityTypeMapping TypeName="MyProjectDBModel.AspNetUserLogin">
+        <MappingFragment StoreEntitySet="AspNetUserLogins">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+          <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUsers">
+      <EntityTypeMapping TypeName="MyProjectDBModel.AspNetUser">
+        <MappingFragment StoreEntitySet="AspNetUsers">
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+          <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+          <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+          <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+          <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+          <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+          <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BeneficierMedicineRequests">
+      <EntityTypeMapping TypeName="MyProjectDBModel.BeneficierMedicineRequest">
+        <MappingFragment StoreEntitySet="BeneficierMedicineRequest">
+          <ScalarProperty Name="RespondedAmount" ColumnName="RespondedAmount" />
+          <ScalarProperty Name="RequestedAmount" ColumnName="RequestedAmount" />
+          <ScalarProperty Name="LatestStatusId" ColumnName="LatestStatusId" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="RespondDate" ColumnName="RespondDate" />
+          <ScalarProperty Name="RequestDate" ColumnName="RequestDate" />
+          <ScalarProperty Name="MedicineId" ColumnName="MedicineId" />
+          <ScalarProperty Name="DonatorId" ColumnName="DonatorId" />
+          <ScalarProperty Name="BeneficierId" ColumnName="BeneficierId" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BMedicineRequestStatus">
+      <EntityTypeMapping TypeName="MyProjectDBModel.BMedicineRequestStatu">
+        <MappingFragment StoreEntitySet="BMedicineRequestStatus">
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+          <ScalarProperty Name="BRequestId" ColumnName="BRequestId" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Cities">
+      <EntityTypeMapping TypeName="MyProjectDBModel.City">
+        <MappingFragment StoreEntitySet="City">
+          <ScalarProperty Name="GovernerateId" ColumnName="GovernerateId" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="CityName" ColumnName="CityName" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Complaints">
+      <EntityTypeMapping TypeName="MyProjectDBModel.Complaint">
+        <MappingFragment StoreEntitySet="Complaint">
+          <ScalarProperty Name="ComplaintFilePath" ColumnName="ComplaintFilePath" />
+          <ScalarProperty Name="AvialableRespondNotes" ColumnName="AvialableRespondNotes" />
+          <ScalarProperty Name="RespondDoctorId" ColumnName="RespondDoctorId" />
+          <ScalarProperty Name="ComplaintRequsterId" ColumnName="ComplaintRequsterId" />
+          <ScalarProperty Name="LatestStautsId" ColumnName="LatestStautsId" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="ComplainDate" ColumnName="ComplainDate" />
+          <ScalarProperty Name="ComplaintDescription" ColumnName="ComplaintDescription" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ComplaintStatus">
+      <EntityTypeMapping TypeName="MyProjectDBModel.ComplaintStatu">
+        <MappingFragment StoreEntitySet="ComplaintStatus">
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+          <ScalarProperty Name="CompliantId" ColumnName="CompliantId" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Consults">
+      <EntityTypeMapping TypeName="MyProjectDBModel.Consult">
+        <MappingFragment StoreEntitySet="Consult">
+          <ScalarProperty Name="ConsultTypeId" ColumnName="ConsultTypeId" />
+          <ScalarProperty Name="QuestionDate" ColumnName="QuestionDate" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="QuestionerId" ColumnName="QuestionerId" />
+          <ScalarProperty Name="AvailableFilePath" ColumnName="AvailableFilePath" />
+          <ScalarProperty Name="ConsultQuestionName" ColumnName="ConsultQuestionName" />
+          <ScalarProperty Name="ConsultQuestionTitle" ColumnName="ConsultQuestionTitle" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ConsultAnswers">
+      <EntityTypeMapping TypeName="MyProjectDBModel.ConsultAnswer">
+        <MappingFragment StoreEntitySet="ConsultAnswer">
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="AnswerDate" ColumnName="AnswerDate" />
+          <ScalarProperty Name="AnsweredById" ColumnName="AnsweredById" />
+          <ScalarProperty Name="Answer" ColumnName="Answer" />
+          <ScalarProperty Name="ConsultId" ColumnName="ConsultId" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ConsultTypes">
+      <EntityTypeMapping TypeName="MyProjectDBModel.ConsultType">
+        <MappingFragment StoreEntitySet="ConsultType">
+          <ScalarProperty Name="ConsultTypeName" ColumnName="ConsultTypeName" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Doctors">
+      <EntityTypeMapping TypeName="MyProjectDBModel.Doctor">
+        <MappingFragment StoreEntitySet="Doctor">
+          <ScalarProperty Name="MemberId" ColumnName="MemberId" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="YearsOfExperience" ColumnName="YearsOfExperience" />
+          <ScalarProperty Name="Speciality" ColumnName="Speciality" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Genders">
+      <EntityTypeMapping TypeName="MyProjectDBModel.Gender">
+        <MappingFragment StoreEntitySet="Gender">
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="GenderName" ColumnName="GenderName" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Governartes">
+      <EntityTypeMapping TypeName="MyProjectDBModel.Governarte">
+        <MappingFragment StoreEntitySet="Governarte">
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="GovernarteName" ColumnName="GovernarteName" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Medicines">
+      <EntityTypeMapping TypeName="MyProjectDBModel.Medicine">
+        <MappingFragment StoreEntitySet="Medicine">
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="ExpireDate" ColumnName="ExpireDate" />
+          <ScalarProperty Name="MedicineDescription" ColumnName="MedicineDescription" />
+          <ScalarProperty Name="MedicineName" ColumnName="MedicineName" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Members">
+      <EntityTypeMapping TypeName="MyProjectDBModel.Member">
+        <MappingFragment StoreEntitySet="Member">
+          <ScalarProperty Name="Age" ColumnName="Age" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="GenderId" ColumnName="GenderId" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="CityId" ColumnName="CityId" />
+          <ScalarProperty Name="PhoneNo" ColumnName="PhoneNo" />
+          <ScalarProperty Name="NationalId" ColumnName="NationalId" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pharamacies">
+      <EntityTypeMapping TypeName="MyProjectDBModel.Pharamacy">
+        <MappingFragment StoreEntitySet="Pharamacy">
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="PharmacyOwnerId" ColumnName="PharmacyOwnerId" />
+          <ScalarProperty Name="PharmacyPhone" ColumnName="PharmacyPhone" />
+          <ScalarProperty Name="PharmacyAddress" ColumnName="PharmacyAddress" />
+          <ScalarProperty Name="PharmacyName" ColumnName="PharmacyName" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PharmacyMedicineRequests">
+      <EntityTypeMapping TypeName="MyProjectDBModel.PharmacyMedicineRequest">
+        <MappingFragment StoreEntitySet="PharmacyMedicineRequest">
+          <ScalarProperty Name="LatestRequestStatusId" ColumnName="LatestRequestStatusId" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="RespondedAmount" ColumnName="RespondedAmount" />
+          <ScalarProperty Name="RespondDate" ColumnName="RespondDate" />
+          <ScalarProperty Name="RespondPharamacyId" ColumnName="RespondPharamacyId" />
+          <ScalarProperty Name="RequestDate" ColumnName="RequestDate" />
+          <ScalarProperty Name="RequestedAmount" ColumnName="RequestedAmount" />
+          <ScalarProperty Name="RequestPharamcyId" ColumnName="RequestPharamcyId" />
+          <ScalarProperty Name="MedicineId" ColumnName="MedicineId" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PhMedicineRequestStatus">
+      <EntityTypeMapping TypeName="MyProjectDBModel.PhMedicineRequestStatu">
+        <MappingFragment StoreEntitySet="PhMedicineRequestStatus">
+          <ScalarProperty Name="StatusDate" ColumnName="StatusDate" />
+          <ScalarProperty Name="PhMedicineRequestId" ColumnName="PhMedicineRequestId" />
+          <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Status">
+      <EntityTypeMapping TypeName="MyProjectDBModel.Status">
+        <MappingFragment StoreEntitySet="Status">
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="StatusName" ColumnName="StatusName" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="AspNetUserRoles" TypeName="MyProjectDBModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+      <EndProperty Name="AspNetUser">
+        <ScalarProperty Name="Id" ColumnName="UserId" />
+      </EndProperty>
+      <EndProperty Name="AspNetRole">
+        <ScalarProperty Name="Id" ColumnName="RoleId" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

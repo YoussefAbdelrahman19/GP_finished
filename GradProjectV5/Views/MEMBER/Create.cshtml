@@ -1,0 +1,353 @@
+﻿@model GradProjectV5.Models.Member
+
+
+
+
+@{
+    ViewBag.Title = "اضافة مشترك جديد";
+}
+<h2 class="" >الإشتراك</h2>
+<div class="col-sm-10"><hr/></div>
+@using (Html.BeginForm())
+{
+
+<div class="row mt-3 ">
+    <div class="col-sm-12">
+        <div class="col-sm-10">
+            <div class="form-horizontal">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <br />
+
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        @Html.LabelFor(model => model.FullName, new { @class = "control-label py-2" })
+
+
+                    </div>
+                    <div class="col-sm-10">
+                       @* <input class="form-control" id="FullName" name="FullName" type="text">*@
+                        @Html.EditorFor(x => x.FullName, new { htmlAttributes = new { id = "FullName" ,@class="col-sm-10 form-control"} })
+                        @Html.ValidationMessageFor(model => model.FullName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <br />
+                <div class="form-group">
+                    <div class="col-sm-2">
+                        @Html.LabelFor(model => model.PhoneNo, new { @class = "control-label py-2" })
+                    </div>
+                    <div class="col-sm-10">
+                      @*  <input class="form-control" id="Phone" name="Phone" type="text">*@
+                        @Html.EditorFor(x => x.PhoneNo, new { htmlAttributes = new { id = "Phone", @class = "col-sm-10 form-control" } })
+                      @Html.ValidationMessageFor(model => model.PhoneNo ,"", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <br />
+                <div class="form-group">
+                    <div class="col-sm-2">
+                        @Html.LabelFor(model => model.Age, new { @class = "control-label py-2" })
+                    </div>
+
+                    <div class="col-sm-10">
+                        @*<input type="number" id="txt_age"  class="form-control"/>*@
+                        @Html.EditorFor(x => x.Age, new { htmlAttributes = new { id = "txt_age", @class = "col-sm-10 form-control" } })
+                        @Html.ValidationMessageFor(model => model.Age, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <br />
+                <div class="form-group py-2">
+                    <div class="col-sm-10">
+                        @Html.LabelFor(model => model.NationalId, new { @class = "control-label py-2" })
+
+
+                    </div>
+                    <div class="col-sm-10">
+                        @*<input class="form-control" id="NationalId" name="NationalId" type="number" min="14" max="16">*@
+                        @Html.EditorFor(x => x.NationalId, new { htmlAttributes = new { id = "NationalId", @class = "col-sm-10 form-control" } })
+                        @Html.ValidationMessageFor(model => model.NationalId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <br />
+                <div class="form-group py-2">
+                    <div class="col-sm-10">
+                        @Html.LabelFor(model => model.Address, new { @class = "control-label py-2" })
+
+                    </div>
+                    <div class="col-sm-10">
+                        <input class="form-control" id="Address" name="Address" type="text">
+                        @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+
+                <br />
+                <div class="form-group">
+                    <div class="col-sm-10 ">
+                        <label class="control-label py-2 " for="Address">المحافظة  </label>
+
+
+                    </div>
+                    <div class="col-sm-10">
+                        <select id="ddl_Governrate" onchange="loadCity()" class="form-control"></select>
+                    </div>
+                </div>
+                <div class="form-group py-2">
+                    <div class="col-sm-10">
+                        <label class="control-label py-2 " for="Address">المدينة</label>
+
+                    </div>
+                    <div class="col-sm-10">
+                        <select id="ddl_City" class="form-control"></select>
+                    </div>
+                </div>
+
+                <div class="form-group py-2">
+                    <div class="col-sm-10">
+                        <label class="control-label py-2">الجنس</label>
+
+                    </div>
+                    <div class="col-sm-10">
+                        <select id="ddl_Gender" class="form-control"></select>
+                    </div>
+                </div>
+
+
+            
+                <div class="col-sm-10 py-3">
+                    <input type="submit" value="التالي" class="btn btn-primary w-100 py-2" />  @*onclick="AddMember()"*@
+                </div>
+            </div>
+
+
+        </div>
+        <div class="col-sm-2"></div>
+    </div>
+</div>
+
+}
+
+
+<div id="GetAllMembersDiv" class="table-responsive">
+
+
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+
+        $(document).ready(function () {
+
+            loadGender();
+            LoadGovernrate();
+            loadCity();
+            //GetAllMembers();
+        });
+
+
+          function loadGender() {
+            $('#ddl_Gender option').each(function () {
+                $(this).remove();
+            });
+            var url = "@Url.Action("LoadGender", "MEMBER")";
+              var result = CreateAjaxRequest(url, "get", {});
+            $("#ddl_Gender").append('<option >--Please Select--</option>');
+            for (var i in result) {
+                $("#ddl_Gender").append('<option value=' + result[i].ID + '>' + result[i].GenderName + '</option>');
+            }
+
+        }
+
+        function LoadGovernrate() {
+            $('#ddl_Governrate option').each(function () {
+                $(this).remove();
+            });
+            var url = "@Url.Action("GetAllGovernrates","MEMBER")";
+            var type = "GET";
+            var result = CreateAjaxRequest(url, type, {});
+            for (var i in result) {
+                $("#ddl_Governrate").append('<option value=' + result[i].ID + '>' + result[i].GovernarteName + '</option>');
+            }
+
+
+        }
+
+        function loadCity() {
+            var dept_id = $("#ddl_Governrate").val();
+            $('#ddl_City option').each(function () {
+                $(this).remove();
+            });
+            var url = "@Url.Action("GetGovCities", "MEMBER")";
+            var type = "POST";
+            var result = CreateAjaxRequest(url, type, { governmentid: dept_id });
+            $("#ddl_City").append('<option >--Please Select--</option>');
+            for (var i in result) {
+                $("#ddl_City").append('<option value=' + result[i].ID + '>' + result[i].CityName + '</option>');
+            }
+        }
+
+
+
+
+
+            function AddMember() {
+
+                var FullName = $("#FullName ").val();
+                var PhoneNo = $("#Phone").val();
+                var age = $("#txt_age").val();
+                var NationalId = $("#NationalId ").val();
+                var Address = $("#Address").val();
+                var CityID = $("#ddl_City").val();
+                var Genderid = $("#ddl_Gender").val();
+         
+
+
+
+                if (FullName == "" ||
+                    PhoneNo == "" ||
+                    age == "" ||
+                    Address == "" ||
+                    CityID == null ||
+                    Genderid == null 
+                   )
+                    alert("Please enter all required data");
+                else {
+                    var url = "@Url.Action("Create","MEMBER")";
+                    var result = CreateAjaxRequest(url, "post",
+                        {
+                            name: FullName,
+                            phone: PhoneNo,
+                            nationalid: NationalId,
+                            Age: age,
+                            address: Address,
+                            IDNumber: NationalId,
+                            jid: CityID,
+                            GenderId: Genderid
+
+
+                        });
+
+                    @*if (result != null) {
+                        window.location.href = "@Url.Action("Register","Account")";
+                        ClearAllFormData();
+
+                    }*@
+                   // GetAllMembers();
+
+                }
+
+
+            }
+            function GetAllMembers() {
+                var url = "@Url.Action("LoadAllMembers","MEMBER")";
+
+                $("#GetAllMembersDiv").html('');
+                var result = CreateAjaxRequest(url, "get", {});
+
+                if (result != null) {
+                    if (result.length > 0) {
+
+                        var tr = '';
+                        tr += '<table class="table table-striped table-bordered table-hover dataTables-example">';
+                        tr += '<thead>';
+                        tr += '   <tr>';
+                        tr += '       <th>Full Name</th>';
+                        tr += '       <th>Gender</th>';
+                        tr += '       <th> Phone Number</th>';
+                        tr += '       <th>Address </th>';
+                        tr += '       <th>National Id </th>';
+                        tr += '       <th>Governrate </th>';
+                        tr += '       <th>City </th>';
+
+                        tr += '         <th>Edit</th>';
+                        tr += '            <th>Delete</th>';
+                        tr += '    </tr>';
+                        tr += '</tr></thead>';
+                        tr += '<tbody>';
+
+
+                        for (var i = 0; i < result.length; i++) {
+                            tr += '<tr>';
+                            tr += '<td>' + result[i].FullName + '</td>';
+                            tr += '<td>' + result[i].GenderName + '</td>';
+                            tr += '<td>' + result[i].PhoneNo + '</td>';
+                            tr += '<td>' + result[i].Address + '</td>';
+                            tr += '<td>' + result[i].NationalId + '</td>';
+                            tr += '<td>' + result[i].GovernarteName + '</td>';
+                            tr += '<td>' + result[i].CityName + '</td>';
+                            tr += '<td><a href="#" onclick="EditThisMember(' + result[i].ID + ');return false;"><i class="fa fa-edit" style="color:blue;font-weight:bold"></i></a></td>';
+                            tr += '<td><a href="#" onclick="DeleteThisMember(' + result[i].ID + ');return false;"><i class="fa fa-trash" style="color:red;font-weight:bold;"></i></a></td>';
+                            tr += '</tr>';
+                        }
+
+                        tr += '</tbody>';
+                        tr += '  </table>';
+                        $("#GetAllMembersDiv").append(tr);
+                        $('.dataTables-example').DataTable({
+                            "ordering": false
+                        });
+                    }
+                }
+            }
+
+            function EditThisMember(mid) {
+
+                $(window).scrollTop(0);
+                loadGender();
+
+                var url = "@Url.Action("LoadMemberForEdit","MEMBER")";
+
+                var result = CreateAjaxRequest(url, "post", { memberid: mid });
+                for (var i = 0; i < result.length; i++) {
+                    $("#FullName ").val(result[i].FullName);
+
+                    $("#ddl_Gender").val(result[i].GenderId);
+
+                    $("#Phone").val(result[i].PhoneNo);
+                    $("#NationalId ").val(result[i].NationalId);
+                    $("#Address").val(result[i].Address);
+                    LoadGovernrate();
+                    $("#ddl_Governrate").val(result[i].governmentid);
+                    loadCity();
+                    $("#ddl_City").val(result[i].CityID);
+                }
+
+            }
+
+            function DeleteThisMember(mid) {
+                var x = confirm("Are you sure you want to delete this ?");
+                if (x == true) {
+
+                    var type = "POST";
+                    var url = "@Url.Action("DeleteMember", "MEMBER")";
+
+                    var result = CreateAjaxRequest(url, type, { memberid: mid });
+
+                    alert(result);
+                    GetAllMembers();
+                }
+            }
+
+            function ClearAllFormData() {
+
+
+                $("#FullName ").val(null);
+                $("#Phone").val(null);
+                $("#NationalId ").val(null);
+                $("#Address").val(null);
+                $("#ddl_Governrate").val(null);
+                $("#ddl_City").val(null);
+
+
+            }
+
+
+
+
+
+
+    </script>
+
+}

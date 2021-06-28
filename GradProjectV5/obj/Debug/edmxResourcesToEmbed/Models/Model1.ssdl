@@ -1,0 +1,743 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MyProjectDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+    <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetRoles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetUserClaims">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="ClaimType" Type="nvarchar(max)" />
+    <Property Name="ClaimValue" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="AspNetUserLogins">
+    <Key>
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetUserRoles">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetUsers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="256" />
+    <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+    <Property Name="PasswordHash" Type="nvarchar(max)" />
+    <Property Name="SecurityStamp" Type="nvarchar(max)" />
+    <Property Name="PhoneNumber" Type="nvarchar(max)" />
+    <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="datetime" />
+    <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BeneficierMedicineRequest">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BeneficierId" Type="int" />
+    <Property Name="DonatorId" Type="int" />
+    <Property Name="MedicineId" Type="int" />
+    <Property Name="RequestDate" Type="datetime" />
+    <Property Name="RespondDate" Type="datetime" />
+    <Property Name="IsDeleted" Type="bit" />
+    <Property Name="LatestStatusId" Type="int" />
+    <Property Name="RequestedAmount" Type="nvarchar(max)" />
+    <Property Name="RespondedAmount" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="BMedicineRequestStatus">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BRequestId" Type="int" />
+    <Property Name="StatusId" Type="int" />
+    <Property Name="Date" Type="datetime" />
+  </EntityType>
+  <EntityType Name="City">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CityName" Type="nvarchar(max)" />
+    <Property Name="IsDeleted" Type="bit" />
+    <Property Name="GovernerateId" Type="int" />
+  </EntityType>
+  <EntityType Name="Complaint">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ComplaintDescription" Type="nvarchar(max)" />
+    <Property Name="ComplainDate" Type="datetime" />
+    <Property Name="IsDeleted" Type="bit" />
+    <Property Name="LatestStautsId" Type="int" />
+    <Property Name="ComplaintRequsterId" Type="int" />
+    <Property Name="RespondDoctorId" Type="int" />
+    <Property Name="AvialableRespondNotes" Type="nvarchar(max)" />
+    <Property Name="ComplaintFilePath" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="ComplaintStatus">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CompliantId" Type="int" />
+    <Property Name="StatusId" Type="int" />
+    <Property Name="Date" Type="datetime" />
+    <Property Name="IsDeleted" Type="bit" />
+  </EntityType>
+  <EntityType Name="Consult">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ConsultQuestionTitle" Type="nvarchar(max)" />
+    <Property Name="ConsultQuestionName" Type="nvarchar(max)" />
+    <Property Name="AvailableFilePath" Type="nvarchar(max)" />
+    <Property Name="QuestionerId" Type="int" />
+    <Property Name="IsDeleted" Type="bit" />
+    <Property Name="QuestionDate" Type="datetime" />
+    <Property Name="ConsultTypeId" Type="int" />
+  </EntityType>
+  <EntityType Name="ConsultAnswer">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ConsultId" Type="int" />
+    <Property Name="Answer" Type="nvarchar(max)" />
+    <Property Name="AnsweredById" Type="int" />
+    <Property Name="AnswerDate" Type="datetime" />
+    <Property Name="IsDeleted" Type="bit" />
+  </EntityType>
+  <EntityType Name="ConsultType">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ConsultTypeName" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Doctor">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Speciality" Type="nvarchar(max)" />
+    <Property Name="YearsOfExperience" Type="int" />
+    <Property Name="IsDeleted" Type="bit" />
+    <Property Name="MemberId" Type="int" />
+  </EntityType>
+  <EntityType Name="Gender">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GenderName" Type="nvarchar(max)" />
+    <Property Name="IsDeleted" Type="bit" />
+  </EntityType>
+  <EntityType Name="Governarte">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GovernarteName" Type="nvarchar(max)" />
+    <Property Name="IsDeleted" Type="bit" />
+  </EntityType>
+  <EntityType Name="Medicine">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MedicineName" Type="nvarchar(max)" />
+    <Property Name="MedicineDescription" Type="nvarchar(max)" />
+    <Property Name="ExpireDate" Type="datetime" />
+    <Property Name="IsDeleted" Type="bit" />
+  </EntityType>
+  <EntityType Name="Member">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FullName" Type="nvarchar(max)" />
+    <Property Name="NationalId" Type="nvarchar(max)" />
+    <Property Name="PhoneNo" Type="nvarchar(max)" />
+    <Property Name="CityId" Type="int" />
+    <Property Name="Address" Type="nvarchar(max)" />
+    <Property Name="GenderId" Type="int" />
+    <Property Name="IsDeleted" Type="bit" />
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" />
+    <Property Name="Age" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Pharamacy">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PharmacyName" Type="nvarchar(max)" />
+    <Property Name="PharmacyAddress" Type="nvarchar(max)" />
+    <Property Name="PharmacyPhone" Type="nvarchar(max)" />
+    <Property Name="PharmacyOwnerId" Type="int" />
+    <Property Name="IsDeleted" Type="bit" />
+  </EntityType>
+  <EntityType Name="PharmacyMedicineRequest">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MedicineId" Type="int" />
+    <Property Name="RequestPharamcyId" Type="int" />
+    <Property Name="RequestedAmount" Type="nvarchar(max)" />
+    <Property Name="RequestDate" Type="datetime" />
+    <Property Name="RespondPharamacyId" Type="int" />
+    <Property Name="RespondDate" Type="datetime" />
+    <Property Name="RespondedAmount" Type="nvarchar(max)" />
+    <Property Name="IsDeleted" Type="bit" />
+    <Property Name="LatestRequestStatusId" Type="int" />
+  </EntityType>
+  <EntityType Name="PhMedicineRequestStatus">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StatusId" Type="int" />
+    <Property Name="PhMedicineRequestId" Type="int" />
+    <Property Name="StatusDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Status">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StatusName" Type="nvarchar(max)" />
+    <Property Name="IsDeleted" Type="bit" />
+  </EntityType>
+  <Association Name="FK_BeneficierMedicineRequest_BeneficierMedicineRequest">
+    <End Role="Medicine" Type="Self.Medicine" Multiplicity="0..1" />
+    <End Role="BeneficierMedicineRequest" Type="Self.BeneficierMedicineRequest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Medicine">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="BeneficierMedicineRequest">
+        <PropertyRef Name="MedicineId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BeneficierMedicineRequest_BeneficierMedicineRequest1">
+    <End Role="BeneficierMedicineRequest" Type="Self.BeneficierMedicineRequest" Multiplicity="1" />
+    <End Role="BeneficierMedicineRequest1" Type="Self.BeneficierMedicineRequest" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="BeneficierMedicineRequest">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="BeneficierMedicineRequest1">
+        <PropertyRef Name="ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BeneficierMedicineRequest_Donator">
+    <End Role="Member" Type="Self.Member" Multiplicity="0..1" />
+    <End Role="BeneficierMedicineRequest" Type="Self.BeneficierMedicineRequest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Member">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="BeneficierMedicineRequest">
+        <PropertyRef Name="DonatorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BeneficierMedicineRequest_Member">
+    <End Role="Member" Type="Self.Member" Multiplicity="0..1" />
+    <End Role="BeneficierMedicineRequest" Type="Self.BeneficierMedicineRequest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Member">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="BeneficierMedicineRequest">
+        <PropertyRef Name="BeneficierId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BeneficierMedicineRequest_Status">
+    <End Role="Status" Type="Self.Status" Multiplicity="0..1" />
+    <End Role="BeneficierMedicineRequest" Type="Self.BeneficierMedicineRequest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Status">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="BeneficierMedicineRequest">
+        <PropertyRef Name="LatestStatusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BMedicineRequestStatus_Status">
+    <End Role="Status" Type="Self.Status" Multiplicity="0..1" />
+    <End Role="BMedicineRequestStatus" Type="Self.BMedicineRequestStatus" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Status">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="BMedicineRequestStatus">
+        <PropertyRef Name="StatusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_City_Governarte">
+    <End Role="Governarte" Type="Self.Governarte" Multiplicity="0..1" />
+    <End Role="City" Type="Self.City" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Governarte">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="City">
+        <PropertyRef Name="GovernerateId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Complaint_Doctor">
+    <End Role="Doctor" Type="Self.Doctor" Multiplicity="0..1" />
+    <End Role="Complaint" Type="Self.Complaint" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Doctor">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Complaint">
+        <PropertyRef Name="RespondDoctorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ComplaintStatus_ComplaintStatus">
+    <End Role="Complaint" Type="Self.Complaint" Multiplicity="0..1" />
+    <End Role="ComplaintStatus" Type="Self.ComplaintStatus" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Complaint">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ComplaintStatus">
+        <PropertyRef Name="CompliantId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ComplaintStatus_Status">
+    <End Role="Status" Type="Self.Status" Multiplicity="0..1" />
+    <End Role="ComplaintStatus" Type="Self.ComplaintStatus" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Status">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ComplaintStatus">
+        <PropertyRef Name="StatusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Consult_Consult">
+    <End Role="Member" Type="Self.Member" Multiplicity="0..1" />
+    <End Role="Consult" Type="Self.Consult" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Member">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Consult">
+        <PropertyRef Name="QuestionerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Consult_ConsultType">
+    <End Role="ConsultType" Type="Self.ConsultType" Multiplicity="0..1" />
+    <End Role="Consult" Type="Self.Consult" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ConsultType">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Consult">
+        <PropertyRef Name="ConsultTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ConsultAnswer_Consult">
+    <End Role="Consult" Type="Self.Consult" Multiplicity="0..1" />
+    <End Role="ConsultAnswer" Type="Self.ConsultAnswer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Consult">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ConsultAnswer">
+        <PropertyRef Name="ConsultId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ConsultAnswer_Member">
+    <End Role="Member" Type="Self.Member" Multiplicity="0..1" />
+    <End Role="ConsultAnswer" Type="Self.ConsultAnswer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Member">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ConsultAnswer">
+        <PropertyRef Name="AnsweredById" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserClaims">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserLogins">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+    <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetRoles">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserRoles">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserRoles">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Doctor_Member">
+    <End Role="Member" Type="Self.Member" Multiplicity="0..1" />
+    <End Role="Doctor" Type="Self.Doctor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Member">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Doctor">
+        <PropertyRef Name="MemberId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Member_AspNetUsers">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+    <End Role="Member" Type="Self.Member" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Member">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Member_City">
+    <End Role="City" Type="Self.City" Multiplicity="0..1" />
+    <End Role="Member" Type="Self.Member" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="City">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Member">
+        <PropertyRef Name="CityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Member_Gender">
+    <End Role="Gender" Type="Self.Gender" Multiplicity="0..1" />
+    <End Role="Member" Type="Self.Member" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Gender">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Member">
+        <PropertyRef Name="GenderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Pharamacy_Member">
+    <End Role="Member" Type="Self.Member" Multiplicity="0..1" />
+    <End Role="Pharamacy" Type="Self.Pharamacy" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Member">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Pharamacy">
+        <PropertyRef Name="PharmacyOwnerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PharmacyMedicineRequest_Status">
+    <End Role="Status" Type="Self.Status" Multiplicity="0..1" />
+    <End Role="PharmacyMedicineRequest" Type="Self.PharmacyMedicineRequest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Status">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PharmacyMedicineRequest">
+        <PropertyRef Name="LatestRequestStatusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PhMedicineRequestStatus_PhMedicineRequestStatus">
+    <End Role="PharmacyMedicineRequest" Type="Self.PharmacyMedicineRequest" Multiplicity="0..1" />
+    <End Role="PhMedicineRequestStatus" Type="Self.PhMedicineRequestStatus" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PharmacyMedicineRequest">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PhMedicineRequestStatus">
+        <PropertyRef Name="PhMedicineRequestId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PhMedicineRequestStatus_Status">
+    <End Role="Status" Type="Self.Status" Multiplicity="0..1" />
+    <End Role="PhMedicineRequestStatus" Type="Self.PhMedicineRequestStatus" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Status">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PhMedicineRequestStatus">
+        <PropertyRef Name="StatusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RequestMedicine_Medicine">
+    <End Role="Medicine" Type="Self.Medicine" Multiplicity="0..1" />
+    <End Role="PharmacyMedicineRequest" Type="Self.PharmacyMedicineRequest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Medicine">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PharmacyMedicineRequest">
+        <PropertyRef Name="MedicineId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RequestMedicine_Pharamacy">
+    <End Role="Pharamacy" Type="Self.Pharamacy" Multiplicity="0..1" />
+    <End Role="PharmacyMedicineRequest" Type="Self.PharmacyMedicineRequest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pharamacy">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PharmacyMedicineRequest">
+        <PropertyRef Name="RequestPharamcyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RequestMedicine_Pharamacy1">
+    <End Role="Pharamacy" Type="Self.Pharamacy" Multiplicity="0..1" />
+    <End Role="PharmacyMedicineRequest" Type="Self.PharmacyMedicineRequest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pharamacy">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PharmacyMedicineRequest">
+        <PropertyRef Name="RespondPharamacyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MyProjectDBModelStoreContainer">
+    <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BeneficierMedicineRequest" EntityType="Self.BeneficierMedicineRequest" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BMedicineRequestStatus" EntityType="Self.BMedicineRequestStatus" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="City" EntityType="Self.City" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Complaint" EntityType="Self.Complaint" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ComplaintStatus" EntityType="Self.ComplaintStatus" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Consult" EntityType="Self.Consult" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ConsultAnswer" EntityType="Self.ConsultAnswer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ConsultType" EntityType="Self.ConsultType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Doctor" EntityType="Self.Doctor" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Gender" EntityType="Self.Gender" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Governarte" EntityType="Self.Governarte" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Medicine" EntityType="Self.Medicine" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Member" EntityType="Self.Member" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Pharamacy" EntityType="Self.Pharamacy" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PharmacyMedicineRequest" EntityType="Self.PharmacyMedicineRequest" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PhMedicineRequestStatus" EntityType="Self.PhMedicineRequestStatus" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_BeneficierMedicineRequest_BeneficierMedicineRequest" Association="Self.FK_BeneficierMedicineRequest_BeneficierMedicineRequest">
+      <End Role="Medicine" EntitySet="Medicine" />
+      <End Role="BeneficierMedicineRequest" EntitySet="BeneficierMedicineRequest" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BeneficierMedicineRequest_BeneficierMedicineRequest1" Association="Self.FK_BeneficierMedicineRequest_BeneficierMedicineRequest1">
+      <End Role="BeneficierMedicineRequest" EntitySet="BeneficierMedicineRequest" />
+      <End Role="BeneficierMedicineRequest1" EntitySet="BeneficierMedicineRequest" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BeneficierMedicineRequest_Donator" Association="Self.FK_BeneficierMedicineRequest_Donator">
+      <End Role="Member" EntitySet="Member" />
+      <End Role="BeneficierMedicineRequest" EntitySet="BeneficierMedicineRequest" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BeneficierMedicineRequest_Member" Association="Self.FK_BeneficierMedicineRequest_Member">
+      <End Role="Member" EntitySet="Member" />
+      <End Role="BeneficierMedicineRequest" EntitySet="BeneficierMedicineRequest" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BeneficierMedicineRequest_Status" Association="Self.FK_BeneficierMedicineRequest_Status">
+      <End Role="Status" EntitySet="Status" />
+      <End Role="BeneficierMedicineRequest" EntitySet="BeneficierMedicineRequest" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BMedicineRequestStatus_Status" Association="Self.FK_BMedicineRequestStatus_Status">
+      <End Role="Status" EntitySet="Status" />
+      <End Role="BMedicineRequestStatus" EntitySet="BMedicineRequestStatus" />
+    </AssociationSet>
+    <AssociationSet Name="FK_City_Governarte" Association="Self.FK_City_Governarte">
+      <End Role="Governarte" EntitySet="Governarte" />
+      <End Role="City" EntitySet="City" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Complaint_Doctor" Association="Self.FK_Complaint_Doctor">
+      <End Role="Doctor" EntitySet="Doctor" />
+      <End Role="Complaint" EntitySet="Complaint" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ComplaintStatus_ComplaintStatus" Association="Self.FK_ComplaintStatus_ComplaintStatus">
+      <End Role="Complaint" EntitySet="Complaint" />
+      <End Role="ComplaintStatus" EntitySet="ComplaintStatus" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ComplaintStatus_Status" Association="Self.FK_ComplaintStatus_Status">
+      <End Role="Status" EntitySet="Status" />
+      <End Role="ComplaintStatus" EntitySet="ComplaintStatus" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Consult_Consult" Association="Self.FK_Consult_Consult">
+      <End Role="Member" EntitySet="Member" />
+      <End Role="Consult" EntitySet="Consult" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Consult_ConsultType" Association="Self.FK_Consult_ConsultType">
+      <End Role="ConsultType" EntitySet="ConsultType" />
+      <End Role="Consult" EntitySet="Consult" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ConsultAnswer_Consult" Association="Self.FK_ConsultAnswer_Consult">
+      <End Role="Consult" EntitySet="Consult" />
+      <End Role="ConsultAnswer" EntitySet="ConsultAnswer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ConsultAnswer_Member" Association="Self.FK_ConsultAnswer_Member">
+      <End Role="Member" EntitySet="Member" />
+      <End Role="ConsultAnswer" EntitySet="ConsultAnswer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+      <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+      <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Doctor_Member" Association="Self.FK_Doctor_Member">
+      <End Role="Member" EntitySet="Member" />
+      <End Role="Doctor" EntitySet="Doctor" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Member_AspNetUsers" Association="Self.FK_Member_AspNetUsers">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="Member" EntitySet="Member" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Member_City" Association="Self.FK_Member_City">
+      <End Role="City" EntitySet="City" />
+      <End Role="Member" EntitySet="Member" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Member_Gender" Association="Self.FK_Member_Gender">
+      <End Role="Gender" EntitySet="Gender" />
+      <End Role="Member" EntitySet="Member" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Pharamacy_Member" Association="Self.FK_Pharamacy_Member">
+      <End Role="Member" EntitySet="Member" />
+      <End Role="Pharamacy" EntitySet="Pharamacy" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PharmacyMedicineRequest_Status" Association="Self.FK_PharmacyMedicineRequest_Status">
+      <End Role="Status" EntitySet="Status" />
+      <End Role="PharmacyMedicineRequest" EntitySet="PharmacyMedicineRequest" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PhMedicineRequestStatus_PhMedicineRequestStatus" Association="Self.FK_PhMedicineRequestStatus_PhMedicineRequestStatus">
+      <End Role="PharmacyMedicineRequest" EntitySet="PharmacyMedicineRequest" />
+      <End Role="PhMedicineRequestStatus" EntitySet="PhMedicineRequestStatus" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PhMedicineRequestStatus_Status" Association="Self.FK_PhMedicineRequestStatus_Status">
+      <End Role="Status" EntitySet="Status" />
+      <End Role="PhMedicineRequestStatus" EntitySet="PhMedicineRequestStatus" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RequestMedicine_Medicine" Association="Self.FK_RequestMedicine_Medicine">
+      <End Role="Medicine" EntitySet="Medicine" />
+      <End Role="PharmacyMedicineRequest" EntitySet="PharmacyMedicineRequest" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RequestMedicine_Pharamacy" Association="Self.FK_RequestMedicine_Pharamacy">
+      <End Role="Pharamacy" EntitySet="Pharamacy" />
+      <End Role="PharmacyMedicineRequest" EntitySet="PharmacyMedicineRequest" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RequestMedicine_Pharamacy1" Association="Self.FK_RequestMedicine_Pharamacy1">
+      <End Role="Pharamacy" EntitySet="Pharamacy" />
+      <End Role="PharmacyMedicineRequest" EntitySet="PharmacyMedicineRequest" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,76 @@
+﻿
+@{
+    ViewBag.Title = "Index - Pharmacy";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br/>
+
+<p class="text-center text-info fs-3">تمت اضافة صيدلية بنجاح </p>
+<p class="text-center fs-4">
+    يمكنك إضافة صيدلية جديدة عن طريق الضغط علي 
+    @Html.ActionLink("إضافة جديد", "Create","",new {@class="text-decoration-none"})
+</p>
+
+
+<div id="MyPharmaciesDiv">
+
+</div>
+@section scripts
+{
+    <script>
+        $(document).ready(function() {
+            GetMyPharmacies();
+        });
+
+
+                    function GetMyPharmacies() {
+                var url = "@Url.Action("GetMyPharmacies","Pharmacy")";
+
+                $("#MyPharmaciesDiv").html('');
+                var tr = '';
+                var result = CreateAjaxRequest(url, "post", {});
+
+                if (result != null) {
+                    if (result.length > 0) {
+
+                  
+                        tr += '<table class="table table-striped table-bordered table-hover dataTables-example">';
+                        tr += '<thead>';
+                        tr += '   <tr>';
+                        tr += '       <th>إسم الصيدلية</th>';
+                        tr += '       <th>إسم المالك</th>';
+                        tr += '       <th> العنوان</th>';
+                        tr += '       <th>رقم التليفون </th>';
+                
+                        tr += '    </tr>';
+                        tr += '</tr></thead>';
+                        tr += '<tbody>';
+
+
+                        for (var i = 0; i < result.length; i++) {
+                            tr += '<tr>';
+                            tr += '<td>' + result[i].PharmacyName + '</td>';
+                            tr += '<td>' + result[i].FullName + '</td>';
+                            tr += '<td>' + result[i].PharmacyAddress + '</td>';
+                            tr += '<td>' + result[i].PharmacyPhone + '</td>';
+                            tr += '</tr>';
+                        }
+
+                        tr += '</tbody>';
+                        tr += '  </table>';
+                        tr += '<br>';
+                        tr += '<p>يمكنك إضافة الدواء الفائض عن احتياجك عن طريق الضغط علي <a href="#" onclick="EditThisMember();return false;"><i class="fa fa-plus" style="color:blue;font-weight:bold"></i></a>';
+                        tr += '<p>يمكنك طلب الدواء الناقص لديك عن طريق الضغط علي <a href="@Url.Action("RequestMedicine" ) "><i class="fa fa-plus" style="color:blue;font-weight:bold"></i></a>';
+                        $("#GetAllMembersDiv").append(tr);
+                        $('.dataTables-example').DataTable({
+                            "ordering": false
+                        });
+                    }
+                }
+                $("#MyPharmaciesDiv").append(tr);
+                    }
+
+
+    </script>
+}

@@ -1,0 +1,149 @@
+﻿
+
+<div class="modal fade" id="MemberDetailsModal" tabindex="-1" aria-labelledby="OpenDonateMedicineModalModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            </div>
+            <div class="modal-body" id="MemberDetailsModalBody">
+              
+
+
+                </div>
+         
+
+            </div>
+            <div class="modal-footer">
+            
+
+            </div>
+        </div>
+    </div>
+
+
+<div id="DonatedRequestsDiv">
+
+</div>
+@section scripts
+{
+    <script>
+        $(document).ready(function() {
+            LoadDonatedRequests();
+        });
+
+
+                    function LoadDonatedRequests() {
+                var url = "@Url.Action("LoadDonatedRequests", "DonateMedicine")";
+
+                $("#DonatedRequestsDiv").html('');
+                var tr = '';
+                var result = CreateAjaxRequest(url, "post", {});
+
+                if (result != null) {
+                    if (result.length > 0) {
+
+
+                        tr += '<table class="table table-striped table-bordered table-hover dataTables-example">';
+                        tr += '<thead>';
+                        tr += '   <tr>';
+                        tr += '       <th>مقدم الطلب</th>';
+                        tr += '       <th>الدواء المطلوب</th>';
+                        tr += '       <th>تاريخ التقديم</th>';
+                        tr += '       <th> الكمية المطلوبة</th>';
+                        tr += '       <th>المتبرع </th>';
+                        tr += '       <th>الكمية المتاحة </th>';
+                        tr += '       <th>تاريخ الرد </th>';
+                        tr += '       <th>الحالة النهائية </th>';
+
+                        tr += '    </tr>';
+                        tr += '</tr></thead>';
+                        tr += '<tbody>';
+
+
+                        for (var i = 0; i < result.length; i++) {
+                            tr += '<tr>';
+                            tr += '<td><a href="#" onclick="GetMemberDetails(' + result[i].BeneficierId+');return false;">' + result[i].BenificierFullName + '</a></td>';
+                            tr += '<td>' + result[i].MedicineName + '</td>';
+                            tr += '<td>' + result[i].Rday + "/"+result[i].Rmonth + "/"+result[i].Ryear + '</td>';
+                            tr += '<td>' + result[i].RequestedAmount + '</td>';
+                            tr += '<td><a href="#" onclick="GetMemberDetails(' + result[i].DonatorId + ');return false;">' + result[i].DonatorFullName + '</a></td>';
+
+                            tr += '<td>' + result[i].RespondedAmount + '</td>';
+                            if (result[i].Respondyear == 0) {
+                                tr += '<td></td>';
+                            } else {
+                                tr += '<td>' + result[i].Respondday + "/" + result[i].Respondmonth + "/" + result[i].Respondyear + '</td>';
+
+                            }
+                            tr += '<td>' + result[i].StatusName + '</td>';
+                            tr += '</tr>';
+                        }
+
+                        tr += '</tbody>';
+                        tr += '  </table>';
+                        tr += '<br>';
+                        $("#GetAllMembersDiv").append(tr);
+                        $('.dataTables-example').DataTable({
+                            "ordering": false
+                        });
+                    }
+                }
+                $("#DonatedRequestsDiv").append(tr);
+                    }
+
+
+        function GetMemberDetails(ID) {
+            $("#MemberDetailsModalBody").html("");
+            var url = "@Url.Action("LoadMemberDetails","MEMBER")";
+            var result = CreateAjaxRequest(url, "post", { memberid: ID });
+            var tr = '';
+            tr += '<table style="width:100%" class="table table-bordered  table-striped  "> ';
+            tr += '<tbody>';
+            for (var i in result) {
+
+                tr += '<tr >';
+                tr += ' <td>الإسم</td>';
+                tr += ' <td  >' + result[i].FullName + '</td>';
+                tr += '</tr>';
+                tr += '<tr >';
+                tr += ' <td>رقم الهاتف</td>';
+                tr += ' <td  >' + result[i].PhoneNo + '</td>';
+                tr += '</tr>';
+                tr += '<tr >';
+                tr += ' <td>العنوان</td>';
+                tr += ' <td  >' + result[i].Address + '</td>';
+                tr += '</tr>';
+                tr += '<tr >';
+                tr += ' <td>المحافظة</td>';
+                tr += ' <td  >' + result[i].GovernarteName + '</td>';
+                tr += '</tr>';
+                tr += '<tr >';
+                tr += ' <td>المدينة</td>';
+                tr += ' <td  >' + result[i].CityName + '</td>';
+                tr += '</tr>';
+           
+          
+         
+           
+            
+
+
+
+
+
+      
+
+            }
+
+            tr += '</tbody>';
+            tr += '  </table>';
+            $("#MemberDetailsModalBody").append(tr);
+            $("#MemberDetailsModal").modal('show');
+
+        }
+
+
+
+
+    </script>
+}

@@ -1,0 +1,90 @@
+﻿@model GradProjectV5.Models.Medicine
+        
+
+
+@{
+    ViewBag.Title = "التبرع بالدواء";
+   
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    
+}
+
+<div style="margin-top:90px" >
+    <div class="container-fluid mt-5">
+        <h3 class="mt-5 text-center text-primary">
+            توفير الدواء “مجانا”..مبادرات لا حصر لها تطلقها الجمعيات الخيرية وغرف صناعة الدواء
+
+        </h3>
+        <h5 class="mt-5 text-center ">
+            يأتي توفير الدواء المجاني للمحتاجين وغير القادرين على رأس أولويات الجمعيات الأهلية وصناديق دعم الأدوية وغرف صناعة الدواء، حيث انطلقت العديد من المبادرات التي تؤتي ثمارها في توفير الدواء “مجانا” للأسر التي لم يشملها التأمين الصحي        </h5>
+
+    </div>
+
+
+    <div class="mt-5 donatingMedicine container-fluid" >
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+                    <h4>ادخال البيانات للتبرع بالدواء</h4>
+                    <hr />
+
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.ID)
+
+                    <div class="form-group ">
+                        @Html.LabelFor(model => model.MedicineName, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-sm-10">
+                            @Html.EditorFor(model => model.MedicineName, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.MedicineName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    @*<div class="form-group ">
+                        @Html.LabelFor(model => model.MedicineAmount, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-sm-10">
+                            @Html.EditorFor(model => model.MedicineAmount, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.MedicineAmount, "", new { @class = "text-danger" })
+                        </div>
+                    </div>*@
+
+                    <div class="form-group ">
+                        @Html.LabelFor(model => model.MedicineDescription, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-sm-10">
+                            @Html.EditorFor(model => model.MedicineDescription, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.MedicineDescription, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group ">
+                        @Html.LabelFor(model => model.ExpireDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-sm-10">
+                            @Html.EditorFor(model => model.ExpireDate, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.ExpireDate, "", new { @class = "text-danger" })
+                        </div>
+
+
+
+                    </div>
+
+                    <div class="form-group ">
+                        <div class="col-sm-offset-2 col-md-10">
+                            <input type="submit" value="Save" class="btn btn-primary" />
+                        </div>
+                    </div>
+                </div>
+            }
+
+            <div>
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        </div>
+    </div>
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
